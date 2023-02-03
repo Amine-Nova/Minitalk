@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenmous <abenmous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 15:07:00 by abenmous          #+#    #+#             */
-/*   Updated: 2023/02/03 21:19:14 by abenmous         ###   ########.fr       */
+/*   Created: 2023/02/01 18:22:29 by abenmous          #+#    #+#             */
+/*   Updated: 2023/02/03 21:18:23 by abenmous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 static int	g_i;
 
-void	get_character(char *str)
+void	get_character(char *str, int pid)
 {
-	int		i;
-	int		j;
-	char	c;
-	int		k;
+	int				i;
+	int				j;
+	unsigned char	c;
+	int				k;
 
 	i = strlen(str) - 1;
 	k = 0;
@@ -31,23 +31,25 @@ void	get_character(char *str)
 		i--;
 		j = j * 2;
 	}
-	c = (char)k;
+	c = (unsigned char)k;
 	ft_printf("%c", c);
+	if (k == 0)
+		kill(pid, SIGUSR1);
 }
 
-void	get_signal(char c)
+void	get_signal(char c, int pid)
 {
-	static char	str[8];
+	static char	str[33];
 
-	if (g_i <= 7)
+	if (g_i <= 32)
 	{
 		str[g_i] = c;
 		g_i++;
 	}
-	if (g_i == 8)
+	if (g_i == 33)
 	{
 		g_i = 0;
-		get_character(str);
+		get_character(str, pid);
 	}
 }
 
@@ -62,9 +64,9 @@ void	sigact(int signum, siginfo_t *info, void *p)
 		pid = info->si_pid;
 	}
 	if (signum == SIGUSR2)
-		get_signal('0');
+		get_signal('0', pid);
 	if (signum == SIGUSR1)
-		get_signal('1');
+		get_signal('1', pid);
 }
 
 int	main(void)

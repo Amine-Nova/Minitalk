@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   function.c                                         :+:      :+:    :+:   */
+/*   function_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenmous <abenmous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 15:55:18 by abenmous          #+#    #+#             */
-/*   Updated: 2023/02/03 21:22:45 by abenmous         ###   ########.fr       */
+/*   Created: 2023/02/01 18:22:34 by abenmous          #+#    #+#             */
+/*   Updated: 2023/02/03 21:27:45 by abenmous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minitalk.h"
+#include"minitalk_bonus.h"
 
 void	*my_calloc(size_t count, size_t size)
 {
@@ -68,16 +68,16 @@ char	*my_strjoin(char *str1, char *str2)
 	return (str3);
 }
 
-char	*switch_bin(char c)
+char	*switch_bin(unsigned char c)
 {
 	int		j;
 	int		i;
 	int		o;
 	char	*str;
 
-	str = malloc(8);
+	str = malloc(33);
 	i = 0;
-	while (i <= 7)
+	while (i <= 32)
 	{
 		str[i] = '0';
 		i++;
@@ -99,9 +99,16 @@ char	*bin_text(char *str)
 	int		i;
 	char	*s;
 	char	*ptr;
+	char	d[33];
 
 	i = 0;
 	ptr = NULL;
+	while (i <= 32)
+	{
+		d[i] = '0';
+		i++;
+	}
+	i = 0;
 	while (str[i])
 	{
 		s = switch_bin(str[i]);
@@ -109,5 +116,7 @@ char	*bin_text(char *str)
 		free(s);
 		i++;
 	}
+	free(str);
+	ptr = my_strjoin(ptr, d);
 	return (ptr);
 }

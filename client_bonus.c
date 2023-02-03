@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abenmous <abenmous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 15:07:14 by abenmous          #+#    #+#             */
-/*   Updated: 2023/02/03 21:20:41 by abenmous         ###   ########.fr       */
+/*   Created: 2023/02/01 18:22:36 by abenmous          #+#    #+#             */
+/*   Updated: 2023/02/03 21:27:10 by abenmous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 int	ft_atoi(const char *str)
 {
@@ -37,19 +37,27 @@ int	ft_atoi(const char *str)
 	return (c * b);
 }
 
+void	handler(int signum)
+{
+	if (signum == SIGUSR1)
+		ft_printf("The Message Has Been Received\n");
+}
+
 int	main(int ac, char **av)
 {
-	int		i;
-	char	*str;
-	int		j;
-	char	*ptr;
+	struct sigaction	sa;
+	int					i;
+	int					j;
+	char				*ptr;
 
-	(void)ac;
+	(void) ac;
 	j = 0;
 	if (!av[2] || !av[2][0])
 		return (0);
-	str = av[2];
-	ptr = bin_text(str);
+	sa.sa_flags = 0;
+	sa.sa_handler = handler;
+	sigaction(SIGUSR1, &sa, NULL);
+	ptr = bin_text(av[2]);
 	i = ft_atoi(av[1]);
 	while (ptr[j])
 	{
