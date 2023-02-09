@@ -6,7 +6,7 @@
 #    By: abenmous <abenmous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/31 17:16:31 by abenmous          #+#    #+#              #
-#    Updated: 2023/02/01 19:54:14 by abenmous         ###   ########.fr        #
+#    Updated: 2023/02/06 23:40:50 by abenmous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-PRINTF = printf/libftprintf.a
+PRINTF = ft_printf/libftprintf.a
 
 
 all : $(SERVER) $(CLIENT) 
@@ -48,16 +48,16 @@ client_bonus.o function_bonus.o : client_bonus.c function_bonus.c
 server_bonus.o: server_bonus.c
 
 $(PRINTF):
-	make -C printf
+	make -C ft_printf
 
 clean : 
 	rm -rf *.o
-	make clean -C printf
+	make clean -C ft_printf
 
 fclean : clean
 	rm -rf $(SERVER) $(CLIENT)
 	rm -rf $(BONUS_SERVER) $(BONUS_CLIENT)
-	make fclean -C printf
+	make fclean -C ft_printf
 
 re : fclean all
 

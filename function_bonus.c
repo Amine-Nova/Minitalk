@@ -6,7 +6,7 @@
 /*   By: abenmous <abenmous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 18:22:34 by abenmous          #+#    #+#             */
-/*   Updated: 2023/02/03 21:27:45 by abenmous         ###   ########.fr       */
+/*   Updated: 2023/02/06 23:15:34 by abenmous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ char	*bin_text(char *str)
 		free(s);
 		i++;
 	}
-	free(str);
 	ptr = my_strjoin(ptr, d);
 	return (ptr);
 }

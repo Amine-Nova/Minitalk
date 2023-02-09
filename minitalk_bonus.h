@@ -6,7 +6,7 @@
 /*   By: abenmous <abenmous@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 18:22:25 by abenmous          #+#    #+#             */
-/*   Updated: 2023/02/03 20:17:55 by abenmous         ###   ########.fr       */
+/*   Updated: 2023/02/06 23:40:08 by abenmous         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <signal.h>
 # include <string.h>
-# include "printf/ft_printf.h"
+# include "ft_printf/ft_printf.h"
 
 int		ft_putstr(char *s);
 void	*my_calloc(size_t count, size_t size);
